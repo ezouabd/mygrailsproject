@@ -1,5 +1,6 @@
 package com.ajit.controller
 
+import com.ajit.domain.ErrorMessage
 import com.ajit.domain.VoucherAgent;
 
 import grails.converters.JSON
@@ -22,8 +23,16 @@ class VoucherAgentController extends RestfulController {
 	def show(VoucherAgent voucherAgent) {
     if(voucherAgent == null) {
 		//errorMessage = new ErrorMessage(code:"404",message:"invalid credentials")
-        respond   code:"404",message:"invalid credentials"
+       // respond   code:"404",message:"invalid credentials" as JSON
+		
+		render(contentType: "text/json") {
+			//new ErrorMessage(code:"404",message:"invalid credentials")
+			respond  code:"404",message:"invalid credentials"
+			}
+		
+		
     }
+    
     else {
         respond  voucherAgent
     }
